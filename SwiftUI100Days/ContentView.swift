@@ -10,6 +10,16 @@ import SwiftUI
 struct ContentView: View {
     var myDict: [String: String] = ["이름": "이시우", "나이": "23", "취미": "SwiftUI 학습"]
     var mySet: Set<String> = ["한국어", "English","日本語"]
+    
+    enum Weekday: Int {
+        case monday = 1
+            case tuesday = 2
+            case wednesday = 3
+            case thursday = 4
+            case friday = 5
+            case saturday = 6
+            case sunday = 7
+    }
     var body: some View {
         HStack{
             VStack {
@@ -29,9 +39,16 @@ struct ContentView: View {
                 }
                 
             }.padding()
-                .onAppear(){
-                    print("Hello World!")
+            .onAppear(){
+                print("Hello World!")
+            }
+            VStack{
+                Text("Enum")
+                ForEach([Weekday.monday, Weekday.tuesday, Weekday.friday], id: \.self) { item in
+                    Text("\(item.rawValue), isFriday? : \(item == .friday ? "Yes" : "No")")
+                    
                 }
+            }.padding()
         }
         
     }
